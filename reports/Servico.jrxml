@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="14ccdab1-9a40-47bb-836c-e75355d26b70">
+	<property name="ireport.zoom" value="1.4641000000000008"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+    sr.matservico_realizado,
+    sr.data_servico,
+    sr.tipo_pagamento,
+    s.nmservico,
+    sr.valor,
+    u.usuario AS prestador,
+    c.nomecli AS cliente,
+    sr.valor_comissao
+FROM tbservico_realizado sr
+JOIN tbservico s ON sr.matservico = s.matservico
+JOIN tbusuarios u ON sr.iduser = u.iduser
+JOIN tbclientes c ON sr.idcli = c.idcli
+ORDER BY sr.data_servico DESC;]]>
+	</queryString>
+	<field name="matservico_realizado" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="data_servico" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tipo_pagamento" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nmservico" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="valor" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="prestador" class="java.lang.String"/>
+	<field name="cliente" class="java.lang.String"/>
+	<field name="valor_comissao" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="52" splitType="Stretch">
+			<staticText>
+				<reportElement x="197" y="17" width="168" height="35" uuid="1782597c-273b-43fc-9c3e-1eb255c263d3"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Relatorio Geral]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="34" height="20" uuid="efcbff51-a470-461c-b32c-ebfb07ad6a84"/>
+				<text><![CDATA[Cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="123" y="0" width="42" height="20" uuid="c663f2e0-f4b8-47cf-b1a1-890445f83a1d"/>
+				<text><![CDATA[Serviço]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="208" y="0" width="31" height="20" uuid="a40f8bc6-1680-4407-ba35-a0204b6e1c71"/>
+				<text><![CDATA[Valor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="267" y="0" width="47" height="20" uuid="0275e7e8-15c7-47ad-9955-ef80ce0df11b"/>
+				<text><![CDATA[Prestador]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="476" y="0" width="79" height="20" uuid="c62e79f5-9dd8-4c99-b1aa-0d1e5760e667"/>
+				<text><![CDATA[Data realização]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="376" y="0" width="48" height="20" uuid="78209998-b045-468b-bb46-e5484ea9e8cc"/>
+				<text><![CDATA[Comissão]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="33" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="103" height="22" uuid="bb120010-6e88-44b1-83d8-b468c88eb11e"/>
+				<textFieldExpression><![CDATA[$F{cliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="123" y="0" width="74" height="22" uuid="1aea8199-58f7-434b-9879-5eec433d4131"/>
+				<textFieldExpression><![CDATA[$F{nmservico}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="208" y="0" width="42" height="22" uuid="dc27592d-f5e8-46a5-8955-76613a91b40d"/>
+				<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="267" y="0" width="98" height="33" uuid="9af19b69-ea23-4be4-a67d-2ce1e2ae811b"/>
+				<textFieldExpression><![CDATA[$F{prestador}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="476" y="0" width="79" height="22" uuid="031cab41-070c-49c1-8cda-301dba7c7b27"/>
+				<textFieldExpression><![CDATA[$F{data_servico}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="376" y="0" width="100" height="20" uuid="4c2a6a5d-e5a4-4006-b15f-45c96fbfc1ab"/>
+				<textFieldExpression><![CDATA[$F{valor_comissao}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="455" y="34" width="100" height="20" uuid="751aceeb-76d5-4d2c-a640-2d47f9979357"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
